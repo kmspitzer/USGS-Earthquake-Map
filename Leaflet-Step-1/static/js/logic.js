@@ -17,7 +17,9 @@ function createFeatures(earthquakeData) {
 
 		var location = [earthquakeData[i].geometry.coordinates[1], earthquakeData[i].geometry.coordinates[0]];
 		eqMarkers.push(L.circle(location, {
-	  		fillOpacity: 0.75,
+//			color: earthquakeData[i].geometry.coordinates[2],
+//			fillColor: earthquakeData[i].geometry.coordinates[2],
+			fillOpacity: 0.75,
 			radius: earthquakeData[i].properties.mag * 10000
 		}).bindPopup("<h3>" + earthquakeData[i].properties.place +
       			"</h3><hr><p>" + new Date(earthquakeData[i].properties.time) + "</p>"));
