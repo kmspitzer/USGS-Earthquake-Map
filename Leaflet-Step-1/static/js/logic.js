@@ -1,12 +1,27 @@
 // Store our API endpoint inside queryUrl
-var earthquakeJSON = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
+var earthquakeJSON = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
 
 // Perform a GET request to the query URL
 d3.json(earthquakeJSON, function(data) {
 	console.log(data);
+
+
+
   // Once we get a response, send the data.features object to the createFeatures function
   createFeatures(data.features);
 });
+
+
+function setColor(depth) {
+ 
+  depthColor = [{interval: 10, color: "blue"}, {interval: 30, color: "green"}, {interval: 50, color: "red"}, {interval: 70, color: "purple"}, {interval: 90,  color: "orange"}, {interval: 1000, color: "yellow"}];
+
+  for (var i = 0; i < depthColor.length; i++) {
+    if (depth <= depthColor[i].interval) {
+      return(depthColor[i].color);
+    }
+  } 
+}
 
 function createFeatures(earthquakeData) {
 
@@ -17,12 +32,14 @@ function createFeatures(earthquakeData) {
 
 		var location = [earthquakeData[i].geometry.coordinates[1], earthquakeData[i].geometry.coordinates[0]];
 		eqMarkers.push(L.circle(location, {
-//			color: earthquakeData[i].geometry.coordinates[2],
-//			fillColor: earthquakeData[i].geometry.coordinates[2],
-			fillOpacity: 0.75,
+			weight: 1,
+			color: "black",
+			fillColor: setColor(earthquakeData[i].geometry.coordinates[2]),
+			fillOpacity: 0.5,
 			radius: earthquakeData[i].properties.mag * 10000
 		}).bindPopup("<h3>" + earthquakeData[i].properties.place +
-      			"</h3><hr><p>" + new Date(earthquakeData[i].properties.time) + "</p>"));
+      			"</h3><hr><p><strong>Magnitude:</strong> " + earthquakeData[i].properties.mag + "<br><strong>Depth:</strong> "
+            + earthquakeData[i].geometry.coordinates[2] + " km<br><br>" + new Date(earthquakeData[i].properties.time) + "</p>"));
   	}
 
 	var earthquakes = L.layerGroup(eqMarkers);
