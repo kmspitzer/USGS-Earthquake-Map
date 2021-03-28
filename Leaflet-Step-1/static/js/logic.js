@@ -94,4 +94,20 @@ function createMap(earthquakes) {
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
   }).addTo(myMap);
+
+
+  // Set up the legend
+  var legend = L.control({ position: "bottomright" });
+  legend.onAdd = function(map) {
+    var div = L.DomUtil.create("div", "info legend");
+    depthLimits = [-10, 10, 30, 50, 70, 90];
+
+    for (var i = 0; i < depthLimits.length; i++) {
+      div.innerHTML += '<i style="background:' + setColor(depthLimits[i] + 1) + '"></i> ' + depthLimits[i] + (depthLimits[i + 1] ? '&ndash;' + depthLimits[i + 1] + '<br>' : '+');
+    }
+    return div;
+  };
+
+    
+    legend.addTo(myMap);
 }
