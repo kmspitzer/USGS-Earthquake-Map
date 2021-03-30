@@ -14,7 +14,7 @@ d3.json(earthquakeJSON, function(data) {
 function setColor(depth) {
  
   // create color object
-  depthColor = [{interval: 10, color: "blue"}, {interval: 30, color: "green"}, {interval: 50, color: "red"}, {interval: 70, color: "purple"}, {interval: 90,  color: "orange"}, {interval: 1000, color: "yellow"}];
+  depthColor = [{interval: 10, color: "#3af256"}, {interval: 30, color: "#04bfc2"}, {interval: 50, color: "#266ad1"}, {interval: 70, color: "#0437c2"}, {interval: 90,  color: "#a404bd"}, {interval: 1000, color: "#bd040d"}];
 
   // loop through color object and return
   // first match
@@ -44,7 +44,7 @@ function createFeatures(earthquakeData) {
 			weight: 1,
 			color: "black",
 			fillColor: setColor(earthquakeData[i].geometry.coordinates[2]),
-			fillOpacity: 0.5,
+			fillOpacity: 0.8,
 			radius: earthquakeData[i].properties.mag * 10000
 		}).bindPopup("<h3>" + earthquakeData[i].properties.place +
       			"</h3><hr><p><strong>Magnitude:</strong> " + earthquakeData[i].properties.mag + "<br><strong>Depth:</strong> "
