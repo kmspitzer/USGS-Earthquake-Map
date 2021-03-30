@@ -100,9 +100,10 @@ function createMap(earthquakes) {
   var legend = L.control({ position: "bottomright" });
   legend.onAdd = function() {
       var div = L.DomUtil.create("div", "info legend");
-      depthLimits = [-10,10,30,50,70,90];
+      var depthLimits = [-10,10,30,50,70,90];
+      div.innerHTML = '<h3>Epicenter Depth</h3>';
       for (var i = 0; i < depthLimits.length; i++) {
-        div.innerHTML += '<i style="background:' + setColor(depthLimits[i] + 1) + '"></i> ' + depthLimits[i] + (depthLimits[i + 1] ? '&ndash;' + depthLimits[i + 1] + '<br>' : '+');
+        div.innerHTML += '<i style="background:' + setColor(depthLimits[i] + 1) + '"></i> ' + depthLimits[i] + (depthLimits[i + 1] ? ' km &ndash; ' + depthLimits[i + 1] + ' km <br>' : '+ km');
         }
         console.log(div);
         return div;
