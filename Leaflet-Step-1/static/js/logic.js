@@ -1,3 +1,22 @@
+// Leaflet Challenge -- Step 1
+//
+//      Kate Spitzer
+//
+//  This script uses Leaflet, Javascript and Mapbox to render a map of
+//  earthquake data for the last 30 days.  Points are mapped by placing
+//  a circle at the latitude and longitude of the event.  Their size is
+//  determined by the magnitude of the earthquake, and the color is
+//  determined by the epicenter's depth.  A legend is displayed indicating
+//  the color scale for epicenter depth.  A tooltip is displayed when a
+//  circle marker is clicked, displaying the location of the earthquake,
+//  its magnitude, the epicenter depth, and the date and time of 
+//  occurrence.
+//
+//
+//
+//
+
+
 // define geoJSON dataset
 var earthquakeJSON = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
 

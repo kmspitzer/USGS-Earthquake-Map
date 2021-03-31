@@ -1,3 +1,24 @@
+// Leaflet Challenge -- Step 2
+//
+//      Kate Spitzer
+//
+//  This script uses Leaflet, Javascript and Mapbox to render a map of
+//  earthquake data for the last 30 days.  Points are mapped by placing
+//  a circle at the latitude and longitude of the event.  Their size is
+//  determined by the magnitude of the earthquake, and the color is
+//  determined by the epicenter's depth.  A legend is displayed indicating
+//  the color scale for epicenter depth.  A tooltip is displayed when a
+//  circle marker is clicked, displaying the location of the earthquake,
+//  its magnitude, the epicenter depth, and the date and time of 
+//  occurrence.
+//
+//  This map includes a number of basemap layers which can be chosen by
+//  the viewer, as well at checkboxes to toggle the earthquake markers
+//  and the tectonic plates on the map.
+//
+//
+//
+
 // function to set color to indicate epicenter depth
 function setColor(depth) {
  
@@ -15,19 +36,20 @@ function setColor(depth) {
 }
 
 
-// define geoJSON dataset
+// define earthquake geoJSON dataset
 var earthquakeJSON = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
 
-// Use this link to get the geojson data.
+// define tectonic plate geoJSON dataset
 var platesJSON = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_plates.json";
 
 // perform a GET request to the query URL
 d3.json(earthquakeJSON, function(eqData) {
     console.log(eqData);
 
-    // Grabbing our GeoJSON data..
+    // grabbing our GeoJSON data..
     d3.json(platesJSON, function(plateData) {
 
+        // create a var so we can reference the features
         var earthquakeData = eqData.features;
 
         eqMarkers = [];
@@ -52,10 +74,11 @@ d3.json(earthquakeJSON, function(eqData) {
                     + earthquakeData[i].geometry.coordinates[2] + " km<br><br>" + new Date(earthquakeData[i].properties.time) + "</p>"));
         }
     
+        // create layer groups
         var earthquakes = L.layerGroup(eqMarkers);
         var plates = L.layerGroup(plateLayer);
     
-        // sending our earthquakes layer to the createMap function
+
         // define streetmap and darkmap layers
         var satellitemap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
             attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
@@ -98,7 +121,8 @@ d3.json(earthquakeJSON, function(eqData) {
 
         // create overlay object to hold our overlay layer
         var overlayMaps = {
-            "Earthquakes": earthquakes
+            "Earthquakes": earthquakes,
+            "Tectonic Plates": plates
         };
 
         // create our map, giving it the streetmap and earthquakes layers to display on load
@@ -113,7 +137,8 @@ d3.json(earthquakeJSON, function(eqData) {
         // Create a layer control
         // Pass in our baseMaps and overlayMaps
         // Add the layer control to the map
-        var control = L.control.layers(baseMaps, overlayMaps, {
+        
+        L.control.layers(baseMaps, overlayMaps, {
             collapsed: false
         }).addTo(myMap);
 
@@ -129,8 +154,7 @@ d3.json(earthquakeJSON, function(eqData) {
             // Passing in our style object
                 style: mapStyle
         }).addTo(myMap);
-        
-        control.addOverlay(plates, "Tectonic Plates"); // Add the layer to the Layer Control.
+
 
 
         // set up the legend
