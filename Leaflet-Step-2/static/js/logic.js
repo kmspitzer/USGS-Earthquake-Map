@@ -35,6 +35,9 @@ function setColor(depth) {
     } 
 }
 
+
+
+// function to create marker layer
 function createMarkers(earthquakeData) {
 
 	eqMarkers = [];
@@ -64,16 +67,21 @@ function createMarkers(earthquakeData) {
 }
 
 
+
+
+// function to build our map
 function createMap(earthquakeData, plateData) {
 
-	// create earthquake markers
-	earthquakes = createMarkers(earthquakeData);
+	// create earthquake markers and layer groups
+	var earthquakes = createMarkers(earthquakeData)
+	var plates = L.layerGroup(L.geoJSON());
 
-	// create dummy layer
-	var plateLayer = L.geoJSON();
-
-	// create layer groups
-	var plates = L.layerGroup(plateLayer);
+	// creating a geoJSON layer with the retrieved data
+	L.geoJson(plateData, {
+		weight: 1.5,
+		color: "#ffaa00",
+		fillColor: "none"
+	}).addTo(plates);
 
 
 	// define streetmap and darkmap layers
@@ -134,23 +142,10 @@ function createMap(earthquakeData, plateData) {
 		layers: [satellitemap, earthquakes, plates]
 	});
 
-	// Our style object
-	var mapStyle = {  
-			weight: 1.5,
-			color: "#ffaa00",
-			fillColor: "none"
-	};
-		
-	// Creating a geoJSON layer with the retrieved data
-	var plateLayer = L.geoJson(plateData, {
-		// Passing in our style object
-			style: mapStyle
-	}).addTo(myMap);
 
-	// Create a layer control
-	// Pass in our baseMaps and overlayMaps
-	// Add the layer control to the map
-	
+	// create a layer control
+	// pass in our baseMaps and overlayMaps
+	// add the layer control to the map	
 	L.control.layers(baseMaps, overlayMaps, {
 		collapsed: false
 	}).addTo(myMap);
@@ -183,7 +178,7 @@ function createMap(earthquakeData, plateData) {
 var earthquakeJSON = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
 
 // define tectonic plate geoJSON dataset
-var platesJSON = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json";
+var platesJSON = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_plates.json";
 
 // perform a GET request to the query URL
 d3.json(earthquakeJSON, function(eqData) {
@@ -199,6 +194,4 @@ d3.json(earthquakeJSON, function(eqData) {
 
     });
 });
-
-
 
