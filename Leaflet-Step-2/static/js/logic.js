@@ -19,6 +19,8 @@
 //
 //
 
+
+
 // function to set color to indicate epicenter depth
 function setColor(depth) {
  
@@ -73,7 +75,7 @@ function createMarkers(earthquakeData) {
 function createMap(earthquakeData, plateData) {
 
 	// create earthquake markers and layer groups
-	var earthquakes = createMarkers(earthquakeData)
+	var earthquakes = createMarkers(earthquakeData);
 	var plates = L.layerGroup(L.geoJSON());
 
 	// creating a geoJSON layer with the retrieved data
@@ -178,7 +180,7 @@ function createMap(earthquakeData, plateData) {
 var earthquakeJSON = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
 
 // define tectonic plate geoJSON dataset
-var platesJSON = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_plates.json";
+var platesJSON = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json";
 
 // perform a GET request to the query URL
 d3.json(earthquakeJSON, function(eqData) {
