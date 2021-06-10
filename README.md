@@ -1,8 +1,6 @@
 # leaflet-challenge
 
 
-Kate Spitzer     collaboration with Rick Spitzer
-
 
 Step 1
 ------
