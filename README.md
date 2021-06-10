@@ -34,6 +34,8 @@ tectonic plate boundaries: https://raw.githubusercontent.com/fraxen/tectonicplat
 mapbox API key
 
 
+Execution:
+---------
 
 To run the map showing tectonic plate boundaries, visit: https://kmspitzer.github.io/leaflet-challenge/Leaflet-Step-2/
 To run the map without tectonic plate boundaries, visit: https://kmspitzer.github.io/leaflet-challenge/Leaflet-Step-1/
