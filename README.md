@@ -32,3 +32,8 @@ inputs:
 earthquake locations: https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson
 tectonic plate boundaries: https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_plates.json
 mapbox API key
+
+
+
+To run the map showing tectonic plate boundaries, visit: https://kmspitzer.github.io/leaflet-challenge/Leaflet-Step-2/
+To run the map without tectonic plate boundaries, visit: https://kmspitzer.github.io/leaflet-challenge/Leaflet-Step-1/
