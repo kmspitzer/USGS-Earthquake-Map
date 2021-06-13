@@ -1,4 +1,4 @@
-# leaflet-challenge
+# USGS-Earthquake-Map
 
 
 
@@ -35,5 +35,5 @@ mapbox API key
 Execution:
 ---------
 
-To run the map, visit: https://kmspitzer.github.io/leaflet-challenge/Leaflet-Step-2/
+To run the map, visit: https://kmspitzer.github.io/USGS-Earthquake-Map/Leaflet-Step-2/
 
