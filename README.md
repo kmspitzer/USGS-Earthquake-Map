@@ -25,7 +25,7 @@ represents.
 A control box is displayed in the top right corner of the map which allows the user to choose the base map on which to display the points
 and plates, and to toggle the earthquake markers and tectonic plate boundaries.
 
-![image](/Leaflet-Step-2/static/img/earthquake_map.png)
+![image](/Leaflet-Step-2/static/img/earthquake_map_fullscrn.png)
 
 inputs:
 ------
