@@ -1,7 +1,5 @@
-# leaflet-challenge
+# USGS-Earthquake-Map
 
-
-Kate Spitzer     collaboration with Rick Spitzer
 
 
 Step 1
@@ -37,5 +35,5 @@ mapbox API key
 Execution:
 ---------
 
-To run the map showing tectonic plate boundaries, visit: https://kmspitzer.github.io/leaflet-challenge/Leaflet-Step-2/
-To run the map without tectonic plate boundaries, visit: https://kmspitzer.github.io/leaflet-challenge/Leaflet-Step-1/
+To run the map, visit: https://kmspitzer.github.io/USGS-Earthquake-Map/Leaflet-Step-2/
+
